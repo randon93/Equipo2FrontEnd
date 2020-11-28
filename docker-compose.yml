@@ -1,0 +1,9 @@
+version: '3'  
+services:
+  biblioteca-frontend:
+    image: biblioteca-frontend
+    container_name: biblioteca-frontend
+    build: 
+      context: ./
+    ports:  
+    - "8290:80"
