@@ -1,0 +1,99 @@
+<page-header></page-header>
+<mat-card>
+  <mat-card-title>Prestamo</mat-card-title>
+
+  <br>
+
+  <form [formGroup]="reactiveForm" #reactiveFormView="ngForm"
+        class="form-field-full">
+
+    <mat-form-field>
+      <mat-label>Libro</mat-label>
+      <mat-select required formControlName="libro_id" required>
+        <mat-option>-- None --</mat-option>
+
+        <mat-option *ngFor="let book of books; let i = index" [value]="book.id">
+          {{book.name}}
+        </mat-option>
+      </mat-select>
+      <mat-error *ngIf="reactiveForm.get('libro_id').invalid">
+        El campo es requerido
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field *ngIf="!register">
+      <mat-label>Bibliotecario</mat-label>
+      <input matInput uppercase placeholder placeholder="Ingrese el nombre del libro" formControlName="documento" required>
+      <mat-error *ngIf="reactiveForm.get('documento').invalid">
+        El campo es requerido
+      </mat-error>
+    </mat-form-field>
+
+    <div style="display: flex; flex-direction: row;" >
+      <mat-form-field>
+        <mat-label>documento cliente</mat-label>
+        <input matInput uppercase placeholder placeholder="Ingrese el nombre del libro" formControlName="documento" required>
+        <mat-error *ngIf="reactiveForm.get('documento').invalid">
+          El campo es requerido
+        </mat-error>
+      </mat-form-field>
+      <button mat-button (click)="onValidDocument()" cdkFocusInitial color="primary">Validar</button>
+    </div>
+
+    <div *ngIf="createdUser">
+
+      <mat-form-field>
+        <mat-label>nombres</mat-label>
+        <input matInput uppercase placeholder placeholder="Ingrese el nombre del libro" formControlName="nombres" required>
+        <mat-error *ngIf="reactiveForm.get('nombres').invalid">
+          El campo es requerido
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>apellidos</mat-label>
+        <input matInput uppercase placeholder placeholder="Ingrese la direccion " formControlName="apellidos" required>
+        <mat-error *ngIf="reactiveForm.get('apellidos').invalid">
+          El campo es requerido
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>direccion</mat-label>
+        <input matInput uppercase placeholder placeholder="Ingrese la direccion del usuario" formControlName="direccion" required>
+        <mat-error *ngIf="reactiveForm.get('direccion').invalid">
+          El campo es requerido
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field >
+        <mat-label>telefono</mat-label>
+        <input matInput uppercase placeholder placeholder="Ingrese el telefono del usuario" formControlName="telefono" required>
+        <mat-error *ngIf="reactiveForm.get('telefono').invalid">
+          El campo es requerido
+        </mat-error>
+      </mat-form-field>
+
+    </div>
+
+
+
+    <mat-form-field style="margin-top: 5px;">
+      <mat-label>Observacion</mat-label>
+      <textarea matInput uppercase placeholder="Ingrese la observacion para el prestamo"
+                formControlName="observacion" required></textarea>
+      <mat-error *ngIf="reactiveForm.get('observacion').invalid">
+        El campo es requerido
+      </mat-error>
+    </mat-form-field>
+
+  </form>
+
+
+  <div style="margin-top: 15px; display: flex; justify-content: flex-end;">
+    <button mat-button (click)="onClickClose()" color="warn">Cancelar</button>
+    <button mat-button (click)="onClickSave()" cdkFocusInitial color="primary"
+            style="margin-left: 5px;">Guardar</button>
+  </div>
+
+</mat-card>

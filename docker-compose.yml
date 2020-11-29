@@ -1,0 +1,14 @@
+version: '3'  
+services:
+  biblioteca-frontend-ceiba:
+    image: tolbarweb/biblioteca-frontend-ceiba
+    container_name: biblioteca-frontend-ceiba
+    build: 
+      context: ./
+    ports:  
+    - "8290:80"
+    networks:
+    - network_biblioteca
+networks:
+  network_biblioteca:
+     external: true

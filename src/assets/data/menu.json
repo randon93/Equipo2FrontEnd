@@ -1,0 +1,15 @@
+{
+  "menu": [{
+      "route": "gestionar_libros",
+      "name": "manageBook",
+      "type": "link",
+      "icon": "dashboard"
+    },
+    {
+      "route": "prestamos",
+      "name": "loan",
+      "type": "link",
+      "icon": "dashboard"
+    }
+  ]
+}
