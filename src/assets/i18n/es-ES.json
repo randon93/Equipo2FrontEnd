@@ -1,7 +1,8 @@
 {
   "menu": {
     "dashboard": "Dashboard",
-    "manageBook": "Manage book",
+    "manageBook": "Gestion de libros",
+    "loan": "Prestamos",
     "design": "Design",
     "design.colors": "Color System",
     "design.icons": "Material Icons",
@@ -90,6 +91,7 @@
     "settings": "settings",
     "logout": "logout"
   },
+
   "login": {
     "title": "Welcome Back",
     "username": "Username",
@@ -100,6 +102,16 @@
     "create_one": "Click here to create one",
     "please_enter": "Please enter"
   },
+
+
+  "manageBook": {
+    "title": "Gestion de libros"
+  },
+
+  "loan": {
+    "title": "Prestamos"
+  },
+
   "register": {
     "welcome": "Welcome",
     "title": "It only takes a few seconds to create your account",
