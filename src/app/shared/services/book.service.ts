@@ -24,7 +24,7 @@ export class BookService {
 
   allBooks(): Observable<ApiResponse<Book[]>> {
     return this._utilRequestService.convertObserver(
-      this._apiRequestService.get(this.appResource, this.path)
+      this._apiRequestService.get(this.appResource, this.path + "/findAll")
     );
   }
 
@@ -34,9 +34,9 @@ export class BookService {
     );
   }
 
-  update(bookId: number, book: Book): Observable<ApiResponse<void>> {
+  update(book: Book): Observable<ApiResponse<void>> {
     return this._utilRequestService.convertObserver(
-      this._apiRequestService.put(this.appResource, `${this.path}/${bookId}`, book)
+      this._apiRequestService.post(this.appResource, this.path + "/guardar-libro", book)
     );
   }
 

@@ -9,7 +9,7 @@ interface Parameters {
   title: string;
   category:
   {
-    id: string,
+    id: number,
     isbn: string,
     nombre: string
   }
@@ -37,7 +37,7 @@ export class ManageBookDialogComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
 
     this.reactiveForm = this.fb.group({
-      id: [''],
+      id: [null],
       isbn: ['', [Validators.required]],
       nombre: ['', [Validators.required]],
     });
@@ -60,7 +60,7 @@ export class ManageBookDialogComponent implements OnInit, OnDestroy {
 
     // actualizar libro
     if (this.data.update) {
-      this._bookService.update(null, { nombre, isbn }).subscribe(resp => {
+      this._bookService.update({ id, nombre, isbn }).subscribe(resp => {
         this._toastr.success(resp.message);
         this.dialogRef.close({ status: true });
       }, error => {
