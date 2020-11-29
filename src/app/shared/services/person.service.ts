@@ -17,7 +17,7 @@ export interface Loan {
 export class PersonService {
 
   private appResource = environment.app;
-  private path = '/usuarios'
+  private path = '/usuario'
 
   constructor(private _apiRequestService: ApiRequestService,
     private _utilRequestService: UtilRequestService) {}
@@ -26,6 +26,12 @@ export class PersonService {
   register(body: any) {
     return this._utilRequestService.convertObserver(
       this._apiRequestService.post(this.appResource, this.path, body)
+    );
+  }
+
+  public verifyDocumento(document: string) {
+    return this._utilRequestService.convertObserver(
+      this._apiRequestService.get(this.appResource, `${this.path}/buscar-identificacion/${document}`,)
     );
   }
 

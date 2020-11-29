@@ -71,6 +71,7 @@ export class LoanDetailComponent implements OnInit, OnDestroy {
 
     this.reactiveForm = this._fb.group({
       libro_id: ['', [Validators.required]],
+      bibliotecario: [''],
       documento: ['', [Validators.required]],
       nombres: ['', [Validators.required]],
       apellidos: ['', [Validators.required]],
@@ -79,6 +80,17 @@ export class LoanDetailComponent implements OnInit, OnDestroy {
       observacion: ['', [Validators.required]],
 
     });
+
+    if (this.register) {
+
+    } else {
+      this.reactiveForm.get('bibliotecario').disable();
+      this.reactiveForm.get('documento').disable();
+      this.reactiveForm.get('libro_id').disable();
+      this.reactiveForm.get('observacion').disable();
+    }
+
+
 
   }
 

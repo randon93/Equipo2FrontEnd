@@ -44,7 +44,7 @@ export class DefaultInterceptor implements HttpInterceptor {
     const newReq = req.clone({ url, setHeaders: headers, withCredentials: true });
 
     return next.handle(newReq).pipe(
-      mergeMap((event: HttpEvent<any>) => this.handleOkReq(event)),
+      //mergeMap((event: HttpEvent<any>) => this.handleOkReq(event)),
       catchError((error: HttpErrorResponse) => this.handleErrorReq(error))
     );
   }
@@ -78,12 +78,13 @@ export class DefaultInterceptor implements HttpInterceptor {
         break;
       case 403:
       case 404:
-      case 500:
         this.goto(`/sessions/${error.status}`);
+        break;
+      case 500:
+
         break;
       default:
         if (error instanceof HttpErrorResponse) {
-          console.error('ERROR', error);
           this.toastr.error(error.error.msg || `${error.status} ${error.statusText}`);
         }
         break;

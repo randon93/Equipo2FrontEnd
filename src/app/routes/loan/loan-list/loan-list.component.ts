@@ -4,6 +4,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { MtxGridColumn } from '@ng-matero/extensions';
 import { BookService } from '@shared/services/book.service';
+import { LoanService } from '@shared/services/loan.service';
 import { ToastrService } from 'ngx-toastr';
 
 @Component({
@@ -17,32 +18,32 @@ export class LoanListComponent implements OnInit {
   columns: MtxGridColumn[];
   isLoading: boolean;
 
-  constructor(private _dialog: MatDialog, private _router: Router, private _toastr: ToastrService, private _datePipe: DatePipe, private _bookService: BookService) {
+  constructor(private _dialog: MatDialog, private _router: Router, private _toastr: ToastrService, private _datePipe: DatePipe, private _loanService: LoanService) {
   }
 
   ngOnInit(): void {
     this.columns = [
 
-      { header: 'Libro', field: 'isbn' },
-      { header: 'Cliente', field: 'nombre' },
-      { header: 'Bibliotecario', field: 'cantidad_libros' },
+      { header: 'Libro', field: 'libroDomain' },
+      { header: 'Cliente', field: 'usuarioDomainCliente' },
+      { header: 'Bibliotecario', field: 'usuarioDomainBiblioteca' },
       {
-        header: 'Fecha de prestamo', field: 'fecha_prestamo', formatter: (data: any) => {
-          return this._datePipe.transform(data.start_date, 'yyyy-dd-MM H:mm')
+        header: 'Fecha de prestamo', field: 'fechaPrestamo', formatter: (data: any) => {
+          return this._datePipe.transform(data.fechaPrestamo, 'yyyy-dd-MM H:mm')
         }
       },
       {
-        header: 'Fecha entrega', field: 'fecha_entrega', formatter: (data: any) => {
-          return this._datePipe.transform(data.start_date, 'yyyy-dd-MM H:mm')
+        header: 'Fecha entrega', field: 'fechaEntrega', formatter: (data: any) => {
+          return this._datePipe.transform(data.fechaEntrega, 'yyyy-dd-MM H:mm')
         }
       },
       {
-        header: 'Fecha entregado', field: 'fecha_entregado', formatter: (data: any) => {
-          return this._datePipe.transform(data.start_date, 'yyyy-dd-MM H:mm')
+        header: 'Fecha entregado', field: 'fechaEntregado', formatter: (data: any) => {
+          return this._datePipe.transform(data.fechaEntregado, 'yyyy-dd-MM H:mm')
         }
       },
 
-      { header: 'Observacion', field: 'libros_disponibles' },
+      { header: 'Observacion', field: 'observaciones' },
       {
         header: 'Opciones',
         field: 'option',
@@ -72,17 +73,17 @@ export class LoanListComponent implements OnInit {
       },
     ];
 
-    this.loadBooks();
+    this.loadLoans();
   }
 
   get total() {
     return this.loans?.length;
   }
 
-  loadBooks() {
+  loadLoans() {
     this.loans = [];
     this.isLoading = true;
-    this._bookService.allBooks().subscribe(resp => {
+    this._loanService.allLoans().subscribe(resp => {
       if (!resp.status) {
         this.isLoading = false;
         return;

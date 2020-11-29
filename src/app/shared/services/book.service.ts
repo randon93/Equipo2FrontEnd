@@ -17,7 +17,7 @@ export class BookService {
 
   appResource = environment.app;
 
-  path = 'books';
+  path = 'libro';
 
   constructor(private _apiRequestService: ApiRequestService,
     private _utilRequestService: UtilRequestService) { }

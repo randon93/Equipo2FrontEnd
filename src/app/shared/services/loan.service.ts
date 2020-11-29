@@ -17,7 +17,7 @@ export class LoanService {
 
   appResource = environment.app;
 
-  path = 'loans';
+  path = 'libro/all-prestamos';
 
   constructor(private _apiRequestService: ApiRequestService,
     private _utilRequestService: UtilRequestService) { }
@@ -40,5 +40,7 @@ export class LoanService {
       this._apiRequestService.put(this.appResource, `${this.path}/${loanId}`, book )
     );
   }
+
+
 
 }

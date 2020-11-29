@@ -11,15 +11,15 @@ export class UtilRequestService {
     return callback.pipe(
       map(respJson => {
         return {
-          status: true,
-          message: respJson.message,
+          status: respJson.status,
+          message: respJson.mensaje,
           data: respJson.data || undefined
         }
       }),
       catchError(err => {
         let resp: ApiResponse<any> = { status: false, message: 'error del sistema' }
-        if (err.error && err.error.hasOwnProperty('message')) {
-          resp.message = err.error.message;
+        if (err.error && err.error.hasOwnProperty('mensaje')) {
+          resp.message = err.error.mensaje;
           resp.data = err.error.data || undefined;
         }
         return of(resp)

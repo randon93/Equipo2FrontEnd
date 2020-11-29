@@ -21,6 +21,14 @@
       </mat-error>
     </mat-form-field>
 
+    <mat-form-field *ngIf="!register">
+      <mat-label>Bibliotecario</mat-label>
+      <input matInput uppercase placeholder placeholder="Ingrese el nombre del libro" formControlName="documento" required>
+      <mat-error *ngIf="reactiveForm.get('documento').invalid">
+        El campo es requerido
+      </mat-error>
+    </mat-form-field>
+
     <div style="display: flex; flex-direction: row;" >
       <mat-form-field>
         <mat-label>documento cliente</mat-label>

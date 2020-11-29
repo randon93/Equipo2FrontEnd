@@ -11,7 +11,9 @@ export const environment = {
   app: {
     apiHostName: 'http://localhost',
     apiBase: 'api',
-    port: 8080
+    port: 8291,
+    token_auth_username: "b1Bli0t33kaidtociddd",
+    token_auth_password: "b1Bli0t33kaidtocs3cret"
   }
 
 };
