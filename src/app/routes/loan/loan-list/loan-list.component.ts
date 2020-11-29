@@ -23,10 +23,22 @@ export class LoanListComponent implements OnInit {
 
   ngOnInit(): void {
     this.columns = [
+      {
+        header: 'Libro', field: 'libroDomain', formatter: (data: any) => {
+          return `${data.libroDomain?.isbn} - ${data.libroDomain?.nombre}`;
+        }
+      },
 
-      { header: 'Libro', field: 'libroDomain' },
-      { header: 'Cliente', field: 'usuarioDomainCliente' },
-      { header: 'Bibliotecario', field: 'usuarioDomainBiblioteca' },
+      {
+        header: 'Cliente', field: 'usuarioDomainCliente', formatter: (data: any) => {
+          return `${data.usuarioDomainCliente?.correo}`;
+        }
+      },
+      {
+        header: 'Bibliotecario', field: 'usuarioDomainBiblioteca', formatter: (data: any) => {
+          return `${data.usuarioDomainBiblioteca?.correo}`;
+        }
+      },
       {
         header: 'Fecha de prestamo', field: 'fechaPrestamo', formatter: (data: any) => {
           return this._datePipe.transform(data.fechaPrestamo, 'yyyy-dd-MM H:mm')
@@ -108,7 +120,7 @@ export class LoanListComponent implements OnInit {
   }
 
   onClickAdd() {
-    this._router.navigate(['/prestamos/detalles'], { state: { register: false } });
+    this._router.navigate(['/prestamos/detalles'], { state: { register: true } });
   }
 
 
