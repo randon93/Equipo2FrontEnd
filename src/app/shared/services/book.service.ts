@@ -12,12 +12,12 @@ export interface Book {
   numero_libros?: number;
   libros_disponibles?: number;
 }
-@Injectable({providedIn: 'root'})
+@Injectable({ providedIn: 'root' })
 export class BookService {
 
   appResource = environment.app;
 
-  path = 'books';
+  path = 'libro';
 
   constructor(private _apiRequestService: ApiRequestService,
     private _utilRequestService: UtilRequestService) { }
@@ -28,15 +28,15 @@ export class BookService {
     );
   }
 
-  register( book: Book ): Observable<ApiResponse<void>> {
+  register(book: Book): Observable<ApiResponse<void>> {
     return this._utilRequestService.convertObserver(
-      this._apiRequestService.post(this.appResource, this.path, book)
+      this._apiRequestService.post(this.appResource, this.path + "/guardar-libro", book)
     );
   }
 
   update(bookId: number, book: Book): Observable<ApiResponse<void>> {
     return this._utilRequestService.convertObserver(
-      this._apiRequestService.put(this.appResource, `${this.path}/${bookId}`, book )
+      this._apiRequestService.put(this.appResource, `${this.path}/${bookId}`, book)
     );
   }
 

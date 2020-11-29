@@ -11,8 +11,8 @@ export class UtilRequestService {
     return callback.pipe(
       map(respJson => {
         return {
-          status: true,
-          message: respJson.message,
+          status: respJson.status,
+          message: respJson.mensaje,
           data: respJson.data || undefined
         }
       }),

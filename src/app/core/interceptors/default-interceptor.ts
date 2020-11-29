@@ -44,7 +44,7 @@ export class DefaultInterceptor implements HttpInterceptor {
     const newReq = req.clone({ url, setHeaders: headers, withCredentials: true });
 
     return next.handle(newReq).pipe(
-      mergeMap((event: HttpEvent<any>) => this.handleOkReq(event)),
+      //mergeMap((event: HttpEvent<any>) => this.handleOkReq(event)),
       catchError((error: HttpErrorResponse) => this.handleErrorReq(error))
     );
   }

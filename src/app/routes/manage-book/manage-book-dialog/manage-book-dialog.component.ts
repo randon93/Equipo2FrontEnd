@@ -60,31 +60,24 @@ export class ManageBookDialogComponent implements OnInit, OnDestroy {
 
     // actualizar libro
     if (this.data.update) {
-      this._bookService.update(id, { nombre, isbn }).subscribe(resp => {
-        if (!resp.status) {
-          this._toastr.error(resp.message);
-          return;
-        }
+      this._bookService.update(null, { nombre, isbn }).subscribe(resp => {
         this._toastr.success(resp.message);
         this.dialogRef.close({ status: true });
+      }, error => {
+        this._toastr.error(error.error);
       });
-      return;
+    } else {
+      this._bookService.register({ nombre, isbn }).subscribe(resp => {
+        this._toastr.success(resp.message);
+        this.dialogRef.close({ status: true });
+      }, error => {
+        this._toastr.error(error.error);
+      });
     }
-
-    // registrar libro
-    this._bookService.register({ isbn, nombre }).subscribe(resp => {
-      if (!resp.status) {
-        this._toastr.error(resp.message);
-        return;
-      }
-      this._toastr.success(resp.message);
-      this.dialogRef.close({ status: true });
-    });
-
   }
 
   onClickClose(): void {
-    this.dialogRef.close({status: false});
+    this.dialogRef.close({ status: false });
   }
   onClickSave(): void {
     this.reactiveFormView.ngSubmit.emit();
