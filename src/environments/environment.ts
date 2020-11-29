@@ -10,7 +10,7 @@ export const environment = {
 
   app: {
     apiHostName: 'http://localhost',
-    apiBase: 'api/v1',
+    apiBase: 'api',
     port: 8080
   }
 
