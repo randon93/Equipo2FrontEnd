@@ -1,11 +1,10 @@
 <page-header></page-header>
 <mat-card>
   <mat-card-title></mat-card-title>
-  <button [class.mat-elevation-z1]="true" style="margin-bottom: 5px; margin-top: 10px;" color="primary" (click)="onClickAdd()" mat-mini-fab>
-    <mat-icon (click)="onClickAdd()" >add</mat-icon>
+  <button [class.mat-elevation-z1]="true" style="margin-bottom: 5px; margin-top: 10px;" color="primary" (click)="onClickAdd(null)" mat-mini-fab>
+    <mat-icon (click)="onClickAdd(null)" >add</mat-icon>
   </button>
-
-
+  
   <mtx-grid [data]="filterBooks"
             [columns]="columns"
             [length]="total"

@@ -25,8 +25,8 @@ export class ManageBookListComponent implements OnInit {
 
       { header: 'ISBN', field: 'isbn' },
       { header: 'Nombre', field: 'nombre' },
-      { header: 'Cantidad libros', field: 'cantidad_libros' },
-      { header: 'Libros disponibles', field: 'libros_disponibles' },
+      { header: 'Cantidad libros', field: 'cantidadDisponible' },
+      { header: 'Libros disponibles', field: 'cantidadTotal' },
       {
         header: 'Opciones',
         field: 'option',
@@ -35,22 +35,16 @@ export class ManageBookListComponent implements OnInit {
         type: 'button',
         buttons: [
           {
+            icon: 'restore_from_trash',
+            tooltip: 'Eliminar',
+            type: 'icon',
+            click: record => this.removeRow(record),
+          },
+          {
             icon: 'remove_red_eye',
-            tooltip: 'Editar evaluacion',
+            tooltip: 'Ver prestamos',
             type: 'icon',
-            click: record => this.removeRow(record),
-          },
-          {
-            icon: 'watch_later',
-            tooltip: 'Presentar evaluacion',
-            type: 'icon',
-            click: record => this.removeRow(record),
-          },
-          {
-            icon: 'watch_later',
-            tooltip: 'Presentar evaluacion',
-            type: 'icon',
-            click: record => this.removeRow(record),
+            click: record => null,
           }
         ],
       },
@@ -89,15 +83,31 @@ export class ManageBookListComponent implements OnInit {
 
   }
   removeRow(record) {
+    const dialogRef = this._dialog.open(ManageBookDialogComponent, {
+      width: '800px'
+    });
 
+    dialogRef.afterClosed().subscribe(result => {
+      if (result && result.status) {
+        
+      }
+    });
   }
 
-  onClickAdd() {
+  onClickAdd(record) {
+    let title: string = "Agregar";
+    let update: boolean = false;
+    if (record != null) {
+      title = "Editar"
+      update = true;
+    }
+
     const dialogRef = this._dialog.open(ManageBookDialogComponent, {
       width: '800px',
       data: {
-        update: false,
-        title: 'Agregar',
+        update: update,
+        title: title,
+        category: record
       }
     });
 

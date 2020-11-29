@@ -12,7 +12,7 @@ export interface Book {
   numero_libros?: number;
   libros_disponibles?: number;
 }
-@Injectable({providedIn: 'root'})
+@Injectable({ providedIn: 'root' })
 export class BookService {
 
   appResource = environment.app;
@@ -24,19 +24,19 @@ export class BookService {
 
   allBooks(): Observable<ApiResponse<Book[]>> {
     return this._utilRequestService.convertObserver(
-      this._apiRequestService.get(this.appResource, this.path)
+      this._apiRequestService.get(this.appResource, this.path + "/findAll")
     );
   }
 
-  register( book: Book ): Observable<ApiResponse<void>> {
+  register(book: Book): Observable<ApiResponse<void>> {
     return this._utilRequestService.convertObserver(
-      this._apiRequestService.post(this.appResource, this.path, book)
+      this._apiRequestService.post(this.appResource, this.path + "/guardar-libro", book)
     );
   }
 
-  update(bookId: number, book: Book): Observable<ApiResponse<void>> {
+  update(book: Book): Observable<ApiResponse<void>> {
     return this._utilRequestService.convertObserver(
-      this._apiRequestService.put(this.appResource, `${this.path}/${bookId}`, book )
+      this._apiRequestService.post(this.appResource, this.path + "/guardar-libro", book)
     );
   }
 
