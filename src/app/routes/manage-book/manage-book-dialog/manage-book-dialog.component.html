@@ -1,0 +1,26 @@
+<h1 mat-dialog-title>{{title}} libro</h1>
+<div mat-dialog-content>
+  <form [formGroup]="reactiveForm" #reactiveFormView="ngForm"  (ngSubmit)="onSubmitReactiveForm()" class="form-field-full">
+    <mat-form-field>
+      <mat-label>Isbn</mat-label>
+      <input matInput uppercase placeholder="Ingrese el isbn del libro" formControlName="isbn" required>
+      <mat-error *ngIf="reactiveForm.get('isbn').invalid">
+        El campo es requerido
+      </mat-error>
+    </mat-form-field>
+
+
+    <mat-form-field>
+      <mat-label>Nombre</mat-label>
+      <input matInput uppercase placeholder placeholder="Ingrese el nombre del libro" formControlName="nombre" required>
+      <mat-error *ngIf="reactiveForm.get('nombre').invalid">
+        El campo es requerido
+      </mat-error>
+    </mat-form-field>
+
+  </form>
+</div>
+<div mat-dialog-actions align="end">
+  <button mat-button (click)="onClickClose()" color="warn">Cancelar</button>
+  <button mat-button (click)="onClickSave()" cdkFocusInitial color="primary">Guardar</button>
+</div>

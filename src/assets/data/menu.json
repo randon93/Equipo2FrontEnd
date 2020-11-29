@@ -1,35 +1,15 @@
 {
   "menu": [{
-      "route": "dashboard",
-      "name": "dashboard",
+      "route": "gestionar_libros",
+      "name": "manageBook",
       "type": "link",
-      "icon": "dashboard",
-      "badge": {
-        "color": "red-500",
-        "value": "5"
-      }
+      "icon": "dashboard"
     },
     {
-      "route": "sessions",
-      "name": "sessions",
-      "type": "sub",
-      "icon": "question_answer",
-      "children": [{
-          "route": "403",
-          "name": "403",
-          "type": "link"
-        },
-        {
-          "route": "404",
-          "name": "404",
-          "type": "link"
-        },
-        {
-          "route": "500",
-          "name": "500",
-          "type": "link"
-        }
-      ]
+      "route": "prestamos",
+      "name": "loan",
+      "type": "link",
+      "icon": "dashboard"
     }
   ]
 }

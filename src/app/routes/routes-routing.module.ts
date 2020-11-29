@@ -4,11 +4,11 @@ import { environment } from '@env/environment';
 
 import { AdminLayoutComponent } from '../theme/admin-layout/admin-layout.component';
 import { AuthLayoutComponent } from '../theme/auth-layout/auth-layout.component';
-import { DashboardComponent } from './dashboard/dashboard.component';
+
 import { LoginComponent } from './sessions/login/login.component';
 import { RegisterComponent } from './sessions/register/register.component';
 import { AuthGuard } from '@core';
-
+import { DashboardComponent } from './dashboard/dashboard.component';
 const routes: Routes = [
   {
     path: '',
@@ -23,10 +23,11 @@ const routes: Routes = [
         data: { title: 'Dashboard', titleI18n: 'dashboard' },
       },
       {
-        path: 'sessions',
-        loadChildren: () => import('./sessions/sessions.module').then(m => m.SessionsModule),
-        data: { title: 'Sessions', titleI18n: 'Sessions' },
+        path: 'gestionar_libros',
+        loadChildren: () => import('./manage-book/manage-book.module').then(m => m.ManageBookModule),
+        data: { titleI18n: 'manageBook' },
       },
+      { path: 'prestamos', loadChildren: () => import('./loan/loan.module').then(m => m.LoanModule), data: { titleI18n: 'loan' }, },
     ],
   },
   {
@@ -45,7 +46,7 @@ const routes: Routes = [
       },
     ],
   },
-  { path: '**', redirectTo: 'dashboard' },
+
 ];
 
 @NgModule({
@@ -56,4 +57,4 @@ const routes: Routes = [
   ],
   exports: [RouterModule],
 })
-export class RoutesRoutingModule {}
+export class RoutesRoutingModule { }
