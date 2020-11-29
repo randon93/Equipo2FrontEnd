@@ -1,6 +1,6 @@
 version: '3'  
 services:
-  tolbarweb/biblioteca-frontend-ceiba:
+  biblioteca-frontend-ceiba:
     image: tolbarweb/biblioteca-frontend-ceiba
     container_name: tolbarweb/biblioteca-frontend-ceiba
     build: 
