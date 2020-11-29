@@ -7,3 +7,6 @@ services:
       context: ./
     ports:  
     - "8290:80"
+networks:
+  network_biblioteca:
+     external: true
