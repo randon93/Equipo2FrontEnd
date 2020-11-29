@@ -91,14 +91,14 @@
     "logout": "logout"
   },
   "login": {
-    "title": "Welcome Back",
-    "username": "Username",
-    "password": "Password",
+    "title": "Biblioteca CEIBA",
+    "username": "Usuario",
+    "password": "Contraseña",
     "remember_me": "Remember Me",
     "login": "Login",
     "have_no_account": "Don't have an account",
     "create_one": "Click here to create one",
-    "please_enter": "Please enter"
+    "please_enter": "Por favor ingresar el"
   },
   "register": {
     "welcome": "Welcome",
